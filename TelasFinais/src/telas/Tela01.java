@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 public class Tela01 extends JFrame {
 
@@ -32,11 +34,15 @@ public class Tela01 extends JFrame {
 	 */
 	public Tela01() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 543, 372);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-// 
-	}
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Sistema dos professores ");
+		lblNewLabel.setBounds(198, 11, 125, 30);
+		contentPane.add(lblNewLabel);
 
+	}
 }
