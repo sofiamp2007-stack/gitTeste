@@ -25,6 +25,7 @@ public class Tela01 extends JFrame {
 	private JTable table_1;
 	
 	private DefaultTableModel modeloTabela; 
+	private int linhaAlteracao = -1; 
 
 	/**
 	 * Launch the application.
@@ -67,7 +68,7 @@ public class Tela01 extends JFrame {
 		tfNome.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Número de alunos cadastrados na sala:");
-		lblNewLabel_2.setBounds(30, 98, 240, 14);
+		lblNewLabel_2.setBounds(30, 98, 205, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		tfNumero = new JTextField();
@@ -83,16 +84,15 @@ public class Tela01 extends JFrame {
 		Tabela.setBounds(30, 139, 368, 185);
 		contentPane.add(Tabela);
 		
+		//coloca os campos na tabla 
+				modeloTabela = new DefaultTableModel(new Object[] {"Nome Compleo", "Participou da atividade"}, 0); 
+				
 		table_1 = new JTable(modeloTabela);
-		table_1.setModel(new DefaultTableModel(new Object[][] {},
-			new String[] {
-				"Nome Completo", "Participou da atividade"
-			}
-		));
+
 		Tabela.setViewportView(table_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Paticipou da atividade proposta?");
-		lblNewLabel_3.setBounds(341, 52, 178, 14);
+		lblNewLabel_3.setBounds(293, 52, 223, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JRadioButton rdbtnSim = new JRadioButton("Sim");
@@ -114,15 +114,19 @@ public class Tela01 extends JFrame {
             } else if (rdbtnNao.isSelected()) {
             	numero = "Não"; 
            }
-		
-				if (!nome.isEmpty() && !nome.isEmpty()){
-				modeloTabela.addRow(new Object[] {nome}); 
-				tfNome.setText("");// pra apagar
-				tfNome.setText(""); 
+			 
+		    if( linhaAlteracao >= 0) {
+        		
+        		modeloTabela.setValueAt(nome, linhaAlteracao, 0);
+        		modeloTabela.setValueAt(numero, linhaAlteracao,1);
+        		linhaAlteracao = -1; 
+		    } else { modeloTabela.addRow(new Object[] {nome, numero}); 
+		              }
+				tfNome.setText("");// pra apagar 
 				tfNome.requestFocus(); // cursor parado no nome 
-			}
-				 }}
-			);
+		}
+				 
+		});
 		btnNewButton.setBounds(448, 178, 89, 23);
 		contentPane.add(btnNewButton);
 		
