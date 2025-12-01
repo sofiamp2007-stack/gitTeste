@@ -6,10 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
@@ -26,7 +28,10 @@ public class Tela01 extends JFrame {
 	
 	private DefaultTableModel modeloTabela; 
 	private int linhaAlteracao = -1; 
+	private JTextField textField;
 
+	 protected JTextArea taResultado = new JTextArea(); 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -55,7 +60,7 @@ public class Tela01 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Sistema dos professores ");
-		lblNewLabel.setBounds(230, 11, 135, 30);
+		lblNewLabel.setBounds(230, 11, 178, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nome do aluno:");
@@ -68,11 +73,11 @@ public class Tela01 extends JFrame {
 		tfNome.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Número de alunos cadastrados na sala:");
-		lblNewLabel_2.setBounds(30, 98, 205, 14);
+		lblNewLabel_2.setBounds(30, 98, 229, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		tfNumero = new JTextField();
-		tfNumero.setBounds(247, 95, 86, 20);
+		tfNumero.setBounds(269, 96, 86, 20);
 		contentPane.add(tfNumero);
 		tfNumero.setColumns(10);
 		
@@ -85,7 +90,7 @@ public class Tela01 extends JFrame {
 		contentPane.add(Tabela);
 		
 		//coloca os campos na tabla 
-				modeloTabela = new DefaultTableModel(new Object[] {"Nome Compleo", "Participou da atividade"}, 0); 
+				modeloTabela = new DefaultTableModel(new Object[] {"Nome Completo", "Participou da atividade"}, 0); 
 				
 		table_1 = new JTable(modeloTabela);
 
@@ -127,24 +132,82 @@ public class Tela01 extends JFrame {
 		}
 				 
 		});
-		btnNewButton.setBounds(448, 178, 89, 23);
+		btnNewButton.setBounds(448, 160, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Alterar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(448, 232, 89, 23);
+				int  linhaSelecionada = table_1.getSelectedRow();
+        		if (linhaSelecionada  >=0) {
+        			
+        			linhaAlteracao = linhaSelecionada; 
+        			
+        			String nome = modeloTabela.getValueAt(linhaSelecionada, 0).toString();
+        			
+        			String numero= modeloTabela.getValueAt(linhaSelecionada, 1).toString(); 
+        			if (numero.equals("Sim")) {
+        				rdbtnSim.setSelected(true);
+        				rdbtnNao.setSelected(false);	
+        			} else if (numero.equals("Não")) {
+        				rdbtnSim.setSelected(false);
+        				rdbtnNao.setSelected(true);	
+        			}
+        		
+        			tfNome.setText(nome);
+        			
+        			
+        			
+        		} else {
+        			JOptionPane.showMessageDialog(null, "Selecione uma linha para alerar"); 
+        		}
+        	}
+				
+			});
+		
+		btnNewButton_1.setBounds(448, 203, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Excluir");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int linhaSelecionada = table_1.getSelectedRow(); 
+        		if (linhaSelecionada >= 0 ) {
+        			modeloTabela.removeRow(linhaSelecionada); 
+        		} else {
+        			
+        			JOptionPane.showMessageDialog(null, "Selecione uma linha para excluir");
+        		
+        		}
+				
+			}
+		}
+				
+			
+		);
+		btnNewButton_2.setBounds(448, 245, 89, 23);
+		contentPane.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_4 = new JLabel("Faltaram:");
+		lblNewLabel_4.setBounds(437, 99, 61, 12);
+		contentPane.add(lblNewLabel_4);
+		
+		textField = new JTextField();
+		textField.setBounds(508, 96, 96, 18);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton_3 = new JButton("Concluir ");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnNewButton_2.setBounds(448, 284, 89, 23);
-		contentPane.add(btnNewButton_2);
+		btnNewButton_3.setBounds(453, 293, 84, 20);
+		contentPane.add(btnNewButton_3);
+		
+	
+		
 
 	}
 }
