@@ -132,7 +132,7 @@ public class Tela01 extends JFrame {
 		}
 				 
 		});
-		btnNewButton.setBounds(448, 160, 89, 23);
+		btnNewButton.setBounds(448, 160, 96, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Alterar");
@@ -165,7 +165,7 @@ public class Tela01 extends JFrame {
 				
 			});
 		
-		btnNewButton_1.setBounds(448, 203, 89, 23);
+		btnNewButton_1.setBounds(448, 203, 96, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Excluir");
@@ -185,7 +185,7 @@ public class Tela01 extends JFrame {
 				
 			
 		);
-		btnNewButton_2.setBounds(448, 245, 89, 23);
+		btnNewButton_2.setBounds(448, 245, 96, 23);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("Faltaram:");
@@ -203,7 +203,7 @@ public class Tela01 extends JFrame {
 				
 			}
 		});
-		btnNewButton_3.setBounds(453, 293, 84, 20);
+		btnNewButton_3.setBounds(453, 293, 91, 20);
 		contentPane.add(btnNewButton_3);
 		
 	
