@@ -28,9 +28,10 @@ public class Tela01 extends JFrame {
 	
 	private DefaultTableModel modeloTabela; 
 	private int linhaAlteracao = -1; 
-	private JTextField textField;
 
 	 protected JTextArea taResultado = new JTextArea(); 
+	 
+
 	
 	/**
 	 * Launch the application.
@@ -127,12 +128,12 @@ public class Tela01 extends JFrame {
         		linhaAlteracao = -1; 
 		    } else { modeloTabela.addRow(new Object[] {nome, numero}); 
 		              }
-				tfNome.setText("");// pra apagar 
-				tfNome.requestFocus(); // cursor parado no nome 
+				tfNome.setText("");
+				tfNome.requestFocus(); 
 		}
 				 
 		});
-		btnNewButton.setBounds(448, 160, 89, 23);
+		btnNewButton.setBounds(448, 141, 107, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Alterar");
@@ -165,7 +166,7 @@ public class Tela01 extends JFrame {
 				
 			});
 		
-		btnNewButton_1.setBounds(448, 203, 89, 23);
+		btnNewButton_1.setBounds(448, 189, 107, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Excluir");
@@ -185,25 +186,29 @@ public class Tela01 extends JFrame {
 				
 			
 		);
-		btnNewButton_2.setBounds(448, 245, 89, 23);
+		btnNewButton_2.setBounds(448, 236, 107, 23);
 		contentPane.add(btnNewButton_2);
-		
-		JLabel lblNewLabel_4 = new JLabel("Faltaram:");
-		lblNewLabel_4.setBounds(437, 99, 61, 12);
-		contentPane.add(lblNewLabel_4);
-		
-		textField = new JTextField();
-		textField.setBounds(508, 96, 96, 18);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		JButton btnNewButton_3 = new JButton("Concluir ");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int total_linhas = modeloTabela.getRowCount();
+				int faltantes = 0; 
 				
-			}
+				for (int i=0; i< total_linhas; i++) {
+				    String participou = modeloTabela.getValueAt( i, 1).toString();
+		            
+				    if(participou.equalsIgnoreCase("Não")) {
+				    	faltantes++;
+				    }
+		        }
+
+				JOptionPane.showMessageDialog(null, "Total de alunos faltantes: " +faltantes);
+		        dispose();
+		    }
 		});
-		btnNewButton_3.setBounds(453, 293, 84, 20);
+		
+		btnNewButton_3.setBounds(448, 285, 107, 20);
 		contentPane.add(btnNewButton_3);
 		
 	
