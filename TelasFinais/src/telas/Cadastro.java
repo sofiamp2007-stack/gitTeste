@@ -53,6 +53,9 @@ public class Cadastro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		setLocationRelativeTo(null);
+		setResizable(false);
+		
 		JLabel TF = new JLabel("Usuário");
 		TF.setBounds(139, 84, 76, 12);
 		contentPane.add(TF);

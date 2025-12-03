@@ -60,6 +60,9 @@ public class Tela01 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		setLocationRelativeTo(null);
+		setResizable(false);
+		
 		JLabel lblNewLabel = new JLabel("Sistema dos professores ");
 		lblNewLabel.setBounds(230, 11, 178, 30);
 		contentPane.add(lblNewLabel);
@@ -196,7 +199,7 @@ public class Tela01 extends JFrame {
 				int faltantes = 0; 
 				
 				for (int i=0; i< total_linhas; i++) {
-				    String participou = modeloTabela.getValueAt( i, 1).toString();
+				    String participou = modeloTabela.getValueAt(i, 1).toString();
 		            
 				    if(participou.equalsIgnoreCase("Não")) {
 				    	faltantes++;
