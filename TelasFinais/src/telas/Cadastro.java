@@ -23,6 +23,9 @@ public class Cadastro extends JFrame {
 	private JPanel contentPane;
 	private JTextField TFusuario;
 	private JTextField TFsenha;
+	private String user = "prof B2";
+	private String senha = "B2";
+	private Usuario usuario; 
 
 	
 	 private Tela01 resultado; 
@@ -74,36 +77,36 @@ public class Cadastro extends JFrame {
 		contentPane.add(TFsenha);
 		TFsenha.setColumns(10);
 		
+		
+		
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String  Usuario = "prof B2";
-				String Senha = "B2";
-				
-				if (TFusuario.getText().equals(Usuario) && TFsenha.getText().equals(Senha)) {
-					JOptionPane.showMessageDialog(null, "Usuário logado com sucesso");
-					
-					  Tela01 tela = new Tela01();
-			            tela.setVisible(true); 
-			            
-			          dispose(); 
-			          
-				} else {
-					JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorreta"); 
-					TFusuario.setText(""); 
-					TFsenha.setText(""); 
-					TFusuario.requestFocus(); 
-				
-					}
-				
-				}
+
+
+                usuario = new Usuario(TFusuario.getText(), TFsenha.getText());
+
+        
+                if (usuario.getUsuario().equals(user) && usuario.getSenha().equals(senha)) {
+                    JOptionPane.showMessageDialog(null, "Usuário logado com sucesso");
+
+                    Tela01 tela = new Tela01();
+                    tela.setVisible(true);
+
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorreta");
+                    TFusuario.setText("");
+                    TFsenha.setText("");
+                    TFusuario.requestFocus();
+                }
 				
 					
 				
 			
-				
+			}}
 			
-		});
+		);
 		btnNewButton.setBounds(176, 180, 84, 20);
 		contentPane.add(btnNewButton);
 		
@@ -112,5 +115,5 @@ public class Cadastro extends JFrame {
 		lblNewLabel_2.setBounds(188, 27, 84, 12);
 		contentPane.add(lblNewLabel_2);
 
-	}
+			}
 }
